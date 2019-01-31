@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Publisher;
+use App\Http\Resources\PublisherResource;
 
 class PublisherController extends Controller
 {
     public function index()
     {
-        return Publisher::all();
+        return PublisherResource::collection(Publisher::all());
     }
 
     public function show($id)
@@ -21,7 +22,7 @@ class PublisherController extends Controller
                 'message' => 'Not found'
             ], 404);
         } else {
-            return $publisher;
+            return new PublisherResource($publisher);
         }
     }
 

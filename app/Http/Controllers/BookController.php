@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use App\Http\Resources\BookResource;
 
 class BookController extends Controller
 {
     public function index()
     {
-        return Book::all();
+        return BookResource::collection(Book::all());
     }
 
     public function show($id)
@@ -21,7 +22,7 @@ class BookController extends Controller
                 'message' => 'Not found'
             ], 404);
         } else {
-            return $book;
+            return new BookResource($book);
         }
     }
 

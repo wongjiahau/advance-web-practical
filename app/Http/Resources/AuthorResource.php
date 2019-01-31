@@ -15,6 +15,7 @@ class AuthorResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "id"   => $this->id,
             "name" => mb_strtoupper($this->name)
         ];
     }

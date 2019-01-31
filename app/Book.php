@@ -16,7 +16,7 @@ class Book extends Model
 
     public function publisher()
     {
-        return $this->hasOne(Publisher::class);
+        return $this->belongsTo(Publisher::class);
     }
 
     public function authors()
