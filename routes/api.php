@@ -16,3 +16,21 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resources([
+    '/authors'      => 'AuthorController',
+    '/publishers'   => 'PublisherController',
+    '/books'        => 'BookController',
+]);
+
+Route::resource('/authors', 'AuthorController', ['except' => [
+    'destroy'
+]]);
+
+Route::resource('/publishers', 'PublisherController', ['except' => [
+    'destroy'
+]]);
+
+Route::resource('/books', 'BookController', ['except' => [
+    'destroy'
+]]);
