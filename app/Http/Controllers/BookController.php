@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Book;
 use App\Http\Resources\BookResource;
+use App\Http\Resources\BookCollection;
 
 class BookController extends Controller
 {
     public function index()
     {
-        return BookResource::collection(Book::all());
+        return new BookCollection(BookResource::collection(Book::all()));
     }
 
     public function show($id)

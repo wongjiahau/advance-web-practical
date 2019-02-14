@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Publisher;
 use App\Http\Resources\PublisherResource;
+use App\Http\Resources\PublisherCollection;
 
 class PublisherController extends Controller
 {
     public function index()
     {
-        return PublisherResource::collection(Publisher::all());
+        return new PublisherCollection(PublisherResource::collection(Publisher::all()));
     }
 
     public function show($id)

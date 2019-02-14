@@ -18,22 +18,35 @@ php artisan serve
 
 ## What command is typed?
 
-```
+```sh
+# Create migrations definition
 php artisan make:migration create_authors_book_table --create=authors_book
-php artisan make:migration create_books_table       --create=books
-php artisan make:migration create_publishers_table  --create=publishers
-php artisan make:migration create_authorss_table     --create=authorss
+php artisan make:migration create_books_table        --create=books
+php artisan make:migration create_publishers_table   --create=publishers
+php artisan make:migration create_authorss_table     --create=authors
+
+# Run the migration
 php artisan migrate
+
+# Create modul
 php artisan make:model Book
 php artisan make:model Publisher
 php artisan make:model Author
+
+# Create controllers
 php artisan make:controller AuthorController
 php artisan make:controller BookController
 php artisan make:controller PublisherController
 
+# Create API resources
 php artisan make:resource AuthorResource
 php artisan make:resource PublisherResource
 php artisan make:resource BookResource
+
+# Create API resource collections
+php artisan make:resource AuthorCollection
+php artisan make:resource PublisherCollection
+php artisan make:resource BookCollection
 ```
 
 ## How to show migration sql?

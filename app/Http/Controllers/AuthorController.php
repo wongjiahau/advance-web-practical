@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Author;
 use App\Http\Resources\AuthorResource;
+use App\Http\Resources\AuthorCollection;
 
 class AuthorController extends Controller
 {
     public function index()
     {
-        return AuthorResource::collection(Author::all());
+        return new AuthorCollection(AuthorResource::collection(Author::all()));
     }
     //
     public function show($id)
