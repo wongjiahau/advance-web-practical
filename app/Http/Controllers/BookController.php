@@ -29,6 +29,13 @@ class BookController extends Controller
 
     public function store(Request $request) 
     {
+        $request->validate([
+            'isbn'         => 'required|unique:books,isbn|regex:"[0-9]{4}"',
+            'title'        => 'required|max:200',
+            'year'         => 'required|integer',
+            'publisher_id' => 'required',
+            'authors'      => 'required'
+        ]);
         $book = Book::create($request->all());
         $book->authors()->sync($request->authors);
         return response()->json([

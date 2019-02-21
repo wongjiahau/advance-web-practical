@@ -86,7 +86,7 @@ http DELETE http://localhost:8000/api/publishers/1
 # For books
 http GET    http://localhost:8000/api/books
 http GET    http://localhost:8000/api/books/1
-echo '{"isbn": "888", "title": "abook", "year": 1998, "publisher_id": 1, "authors": [1]}' | http POST   http://localhost:8000/api/books 
+echo '{"isbn": "0889", "title": "abook", "year": 1998, "publisher_id": 1, "authors": [1]}' | http POST   http://localhost:8000/api/books 
 http PUT    http://localhost:8000/api/books/1 
 http DELETE http://localhost:8000/api/books/1 
 ```

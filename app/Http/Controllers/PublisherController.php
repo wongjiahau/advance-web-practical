@@ -29,6 +29,9 @@ class PublisherController extends Controller
 
     public function store(Request $request) 
     {
+        $request->validate([
+            'name' => 'required|max:150'
+        ]);
         $publisher = Publisher::create($request->all());
         return response()->json([
             'id'         => $publisher->id,
