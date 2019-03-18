@@ -15,8 +15,9 @@ class PublisherResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'   => $this->id,
-            'name' => mb_strtoupper($this->name)
+            'id'    => $this->id,
+            'name'  => mb_strtoupper($this->name),
+            'books' => $this->books
         ];
     }
 }
