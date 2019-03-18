@@ -46,6 +46,13 @@ class BookController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'isbn'         => 'required|regex:"[0-9]{4}"',
+            'title'        => 'required|max:200',
+            'year'         => 'required|integer',
+            'publisher_id' => 'required',
+            'authors'      => 'required'
+        ]);
         $book = Book::find($id);
         if(!$book) {
             return response()->json([
@@ -53,7 +60,8 @@ class BookController extends Controller
                 'message' => 'Not found'
             ], 404);
         } else {
-            $book->update($book->all());
+            $book->update($request->except(['isbn']));
+            $book->authors()->sync($request->authors);
             return response()->json(null, 204);
         }
     }
@@ -67,6 +75,10 @@ class BookController extends Controller
                 'message' => 'Not found'
             ], 404);
         } else {
+            // remove all relationships first
+            $book->authors()->detach();
+
+            // then only delete
             $book->delete();
             return response()->json(null, 204);
         }
